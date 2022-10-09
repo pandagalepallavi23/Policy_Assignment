@@ -1,0 +1,47 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to<br>Policy Portal</h1>
+    <?php $title = 'All Policies';
+    $this->headTitle($title);
+    ?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('policy', ['action' => 'add']) ?>">Add new Policy</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Policy Number</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Premium Amount</th>
+</tr>
+
+<?php if( !empty( $policies ) ) : ?> 
+   <?php foreach ($policies as $item) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($item->firstname) ?></td>
+        <td><?= $this->escapeHtml($item->lastname) ?></td>
+        <td><?= $this->escapeHtml($item->policy_number) ?></td>
+        <td><?= $this->escapeHtml($item->start_date) ?></td>
+        <td><?= $this->escapeHtml($item->end_date) ?></td>
+        <td><?= $this->escapeHtml($item->premium) ?></td>
+        <td>
+            <a href="<?= $this->url('policy', ['action' => 'view', 'id' => $item->id]) ?>">View|</a>
+            <a href="<?= $this->url('policy', ['action' => 'edit', 'id' => $item->id]) ?>">Edit|</a>
+            <a href="<?= $this->url('policy', ['action' => 'delete', 'id' => $item->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+<?php else :?>
+<tr><td rowspan = "7">No Policies found!</td></tr>
+ <?php endif; ?>
+
+</table>
+</div>

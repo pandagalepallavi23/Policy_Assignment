@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to<br>Create New Policy!!!</h1>
+
+    <?php
+
+        $title = 'Add new policy';
+        $this->headTitle($title);
+        $firstname = $form->get('firstname');
+        $firstname->setAttribute('class', 'form-control');
+        $firstname->setAttribute('placeholder', 'First name');
+
+        $lastname = $form->get('lastname');
+        $lastname->setAttribute('class', 'form-control');
+        $lastname->setAttribute('placeholder', 'Last name');
+
+        $start_date = $form->get('start_date');
+        $start_date->setAttribute('class', 'form-control');
+        
+        $end_date = $form->get('end_date');
+        $end_date->setAttribute('class', 'form-control');
+       
+        $policy_number = $form->get('policy_number');
+        $policy_number->setAttribute('class', 'form-control');
+        $policy_number->setAttribute('placeholder', 'Policy number');
+
+        $premium = $form->get('premium');
+        $premium->setAttribute('class', 'form-control');
+        $premium->setAttribute('placeholder', 'Premium amount');
+                 
+        ?>
+        <h1><?= $this->escapeHtml($title) ?></h1>
+        <?php
+        $form->setAttribute('action', $this->url('policy', ['action' => 'add']));
+        $form->prepare();
+        
+        echo $this->form()->openTag($form);
+        echo $this->formHidden($form->get('id'));
+        echo $this->formRow($form->get('firstname'));
+        echo"<br/>";
+        echo $this->formRow($form->get('lastname'));
+        echo"<br/>";
+        echo $this->formRow($form->get('start_date'));
+        echo"<br/>";
+        echo $this->formRow($form->get('end_date'));
+        echo"<br/>";      
+        echo $this->formRow($form->get('policy_number'));
+        echo"<br/>";
+        echo $this->formRow($form->get('premium'));
+        echo"<br/>";       
+        echo $this->formSubmit($form->get('submit'));
+        echo $this->form()->closeTag();
+        //echo $this->formCollection($form);
+
+    ?>
+</div>
+

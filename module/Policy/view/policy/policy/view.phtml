@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to view Policy!!!</h1>
+    <h1 class="">Policy No : <?= empty($policy->policy_number)? 'NA' : $policy->policy_number?></h1>
+    <br/> <br/>
+    <?php
+
+        $title = 'Policy Details for Policy No : ' . $policy->policy_number;
+        $this->headTitle($title);
+    ?>
+    <table class="table">
+        <tr><td><b>First Name :</b></td> <td><?= empty($policy->firstname)? 'NA' : $policy->firstname?></td></tr>
+        <tr><td><b>Last Name :</b></td><td><?= empty($policy->lastname)? 'NA' : $policy->lastname?></td></tr>
+        <tr><td><b>Start Date :</b></td><td><?= empty($policy->start_date)? 'NA' : $policy->start_date?></td></tr>
+        <tr><td><b>End Date :</b></td><td><?= empty($policy->end_date)? 'NA' : $policy->end_date?></td></tr>
+        <tr><td><b>Premium Amount :</b></td><td><?= empty($policy->premium)? 'NA' : $policy->premium?></td></tr>
+    </table>
+</div>
