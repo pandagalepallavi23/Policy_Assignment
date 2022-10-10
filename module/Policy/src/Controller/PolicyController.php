@@ -9,6 +9,10 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Policy\Model\Policy;
 use Policy\Form\PolicyForm;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\Input;
+use Laminas\Validator;
+use Policy\PolicyValidator;
 
 class PolicyController extends AbstractActionController
 {
@@ -44,7 +48,7 @@ class PolicyController extends AbstractActionController
         $form->setInputFilter($policy->getInputFilter());
         $form->setData($request->getPost());
 
-        if (! $form->isValid()) { //echo"Invalid form value<pre>"; print_r($form); die();
+        if (! $form->isValid()) { 
             return ['form' => $form];
         }
 

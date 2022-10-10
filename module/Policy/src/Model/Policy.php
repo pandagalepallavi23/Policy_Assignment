@@ -13,6 +13,9 @@
     use Laminas\Validator\StringLength;
     use Laminas\Validator\Date;
     use Laminas\Validator\DateStep;
+    use Laminas\InputFilter\Input;
+    use Laminas\Validator;
+    use Laminas\Validator\EndDateValidator;
 
     class Policy implements InputFilterAwareInterface
     {
@@ -51,8 +54,20 @@
                     return $this->inputFilter;
                 }
 
-                $inputFilter = new InputFilter();
+                //Need some changes to convert date into string to use in the EndDateValidator.
 
+                /*$start_date = new Input('start_date');
+                $end_date = new Input('end_date');
+                $end_date->getValidatorChain()
+                ->attach(new EndDateValidator(new Validator\Date($start_date), new Validator\Date($end_date) ));
+                */
+                $inputFilter = new InputFilter();
+                
+                /*$inputFilter->add($start_date);
+                $inputFilter->add($end_date);
+                $inputFilter->setData($_POST);*/
+                
+               // $inputFilter = new InputFilter();
                 $inputFilter->add([
                     'name' => 'id',
                     'required' => true,
@@ -180,6 +195,7 @@
                 'premium' => $this->premium
             ];
         }
+
     }
 
         
